@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Still Here</title>
+<meta name="description" content="One hopeful quote a day.">
+<meta name="theme-color" content="#F4F1EA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EA; --text:#2F3A3D; --support:#9DB5A6; --accent:#E8B58C;
+  --sheet:#FBF9F4; --scrim:rgba(47,58,61,.18); --label:#6F8C7C; --ring:#9DB5A6;
+  --b1:rgba(157,181,166,.55); --b2:rgba(169,193,206,.5); --b3:rgba(232,181,140,.28);
+  --stamp:.35;
+}
+:root[data-theme="night"]{
+  --bg:#1C2533; --text:#EDE6D6; --support:#6E7F99; --accent:#E8C27A;
+  --sheet:#253047; --scrim:rgba(8,12,18,.5); --label:#E8C27A; --ring:#4A5A73;
+  --b1:rgba(58,76,104,.75); --b2:rgba(167,163,201,.16); --b3:rgba(232,194,122,.16);
+  --stamp:.3;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text)}
+body{font-family:'DM Sans',system-ui,sans-serif;overflow:hidden;transition:background 2s ease,color 2s ease}
+
+.sky{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.blob{position:absolute;border-radius:50%;will-change:transform}
+.b1{width:95vmax;height:95vmax;left:-35vmax;top:-20vmax;background:radial-gradient(closest-side,var(--b1),transparent);animation:d1 75s ease-in-out infinite alternate}
+.b2{width:100vmax;height:100vmax;right:-40vmax;top:20vh;background:radial-gradient(closest-side,var(--b2),transparent);animation:d2 95s ease-in-out infinite alternate}
+.b3{width:80vmax;height:80vmax;left:5vw;bottom:-45vmax;background:radial-gradient(closest-side,var(--b3),transparent);animation:d1 120s ease-in-out infinite alternate-reverse}
+.fog{position:absolute;left:-50%;top:-50%;width:200%;height:200%;background-size:cover;opacity:.32;will-change:transform;animation:d3 160s ease-in-out infinite alternate}
+@keyframes d1{from{transform:translate(-4vmax,-3vmax) scale(1)}to{transform:translate(8vmax,12vmax) scale(1.2)}}
+@keyframes d2{from{transform:translate(4vmax,5vmax) scale(1.1)}to{transform:translate(-9vmax,-8vmax) scale(.9)}}
+@keyframes d3{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(-8%,6%) rotate(8deg)}}
+@media (prefers-reduced-motion:reduce){.blob,.fog{animation:none}}
+
+.stamp{position:fixed;top:max(24px,env(safe-area-inset-top));right:clamp(20px,3vw,40px);margin:0;font-size:12px;font-weight:300;letter-spacing:.06em;opacity:var(--stamp);z-index:1}
+.spine{position:fixed;left:clamp(30px,4vw,56px);top:50%;margin:0;transform:translate(-50%,-50%) rotate(-90deg);font-size:clamp(12px,1vw,14px);font-weight:500;letter-spacing:.5em;color:var(--support);white-space:nowrap;z-index:1;transition:color 2s ease}
+
+main{position:relative;z-index:1;height:100%;display:flex;align-items:center;padding:0 clamp(40px,8vw,140px) 0 clamp(76px,12vw,220px)}
+.quote{max-width:100%;display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px);opacity:0;transform:translateY(8px);transition:opacity 2.4s ease,transform 2.4s ease}
+.quote.in{opacity:1;transform:none}
+.rule{width:clamp(28px,3vw,44px);height:2px;background:var(--accent)}
+blockquote{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(30px,4.2vw,66px);line-height:1.25;max-width:14em;text-wrap:balance}
+.author{margin:0;font-size:clamp(13px,1.1vw,16px);letter-spacing:.04em;opacity:.6}
+
+.info{position:fixed;right:clamp(16px,3vw,36px);bottom:max(20px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:1px solid var(--ring);background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;z-index:2;opacity:.75;transition:opacity .4s}
+.info:hover,.info:focus-visible{opacity:1}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:3;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s ease}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{width:100%;max-width:560px;background:var(--sheet);border-radius:20px 20px 0 0;padding:26px 28px 36px;display:flex;flex-direction:column;gap:14px;transform:translateY(24px);transition:transform .5s ease}
+.scrim.open .sheet{transform:none}
+@media (min-width:720px){.scrim{align-items:center}.sheet{border-radius:20px;margin:24px}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center}
+.label{margin:0;font-size:11px;font-weight:500;letter-spacing:.2em;color:var(--label);text-transform:uppercase}
+.close{width:44px;height:44px;border:none;background:transparent;color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;margin-right:-12px}
+.who{margin:0;font-family:'Cormorant Garamond',Georgia,serif;font-size:26px}
+.src{margin:0;font-size:14px;line-height:1.6;opacity:.85}
+.sheet a{font-size:13px;color:var(--text)}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="fog" id="fog"></div>
+</div>
+
+<p class="stamp" id="stamp"></p>
+<p class="spine" aria-hidden="true">STILL HERE</p>
+
+<main>
+  <figure class="quote" id="quote" style="margin:0">
+    <div class="rule"></div>
+    <blockquote id="q"></blockquote>
+    <figcaption class="author" id="a"></figcaption>
+  </figure>
+</main>
+
+<button class="info" id="infoBtn" aria-label="About this quote" aria-haspopup="dialog">
+  <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="7" r=".6"/><path d="M12 11v7"/></svg>
+</button>
+
+<div class="scrim" id="scrim">
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="who">
+    <div class="sheet-head">
+      <p class="label">About this quote</p>
+      <button class="close" id="closeBtn" aria-label="Close">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="who" id="who"></p>
+    <p class="src" id="src"></p>
+    <a id="link" href="#" target="_blank" rel="noopener">Read the original</a>
+  </div>
+</div>
+
+<script src="quotes.js"></script>
+<script>
+(function(){
+  var root=document.documentElement;
+
+  // Day from 6am to 7pm local time, night otherwise. ?theme=day|night forces one.
+  var forced=new URLSearchParams(location.search).get('theme');
+  function applyTheme(){
+    var h=new Date().getHours();
+    var t=forced||((h>=6&&h<19)?'day':'night');
+    if(root.dataset.theme!==t){
+      root.dataset.theme=t;
+      document.querySelector('meta[name=theme-color]').content=t==='night'?'#1C2533':'#F4F1EA';
+      paintFog(t);
+    }
+  }
+
+  // Fractal noise, rendered once as a pre-blurred image, then only moved. Cheap on phones.
+  function paintFog(t){
+    var c=t==='night'?'0 0 0 0 0.26  0 0 0 0 0.33  0 0 0 0 0.45':'0 0 0 0 0.62  0 0 0 0 0.71  0 0 0 0 0.66';
+    var svg="<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800' preserveAspectRatio='none'>"+
+      "<filter id='f' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='0.004' numOctaves='3' seed='7'/>"+
+      "<feColorMatrix values='"+c+"  1.6 0 0 0 -0.6'/><feGaussianBlur stdDeviation='22'/></filter>"+
+      "<rect width='800' height='800' filter='url(#f)'/></svg>";
+    document.getElementById('fog').style.backgroundImage='url("data:image/svg+xml,'+encodeURIComponent(svg)+'")';
+  }
+
+  function stamp(){
+    var d=new Date();
+    var date=d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+    var time=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    document.getElementById('stamp').textContent=date+'  ·  '+time;
+  }
+
+  // Same quote for everyone on a given local day. Walks a fixed shuffle, no repeats until the list runs out.
+  function dayNumber(){
+    var d=new Date();
+    return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000);
+  }
+  function shuffled(n){
+    var a=[],s=20261014,i,j,t;
+    for(i=0;i<n;i++)a.push(i);
+    for(i=n-1;i>0;i--){s=(s*1103515245+12345)%2147483648;j=s%(i+1);t=a[i];a[i]=a[j];a[j]=t;}
+    return a;
+  }
+  var shown=null;
+  function showQuote(){
+    var list=window.QUOTES||[];
+    if(!list.length)return;
+    var day=dayNumber();
+    if(day===shown)return;
+    shown=day;
+    var order=shuffled(list.length);
+    var q=list[order[day%list.length]];
+    var box=document.getElementById('quote');
+    box.classList.remove('in');
+    document.getElementById('q').textContent=q.text;
+    document.getElementById('a').textContent=q.author;
+    document.getElementById('who').textContent=q.author;
+    document.getElementById('src').textContent=q.source;
+    var link=document.getElementById('link');
+    link.href=q.url; link.textContent=q.linkText||'Read the original';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){box.classList.add('in');});});
+  }
+
+  // Info sheet
+  var scrim=document.getElementById('scrim'),btn=document.getElementById('infoBtn'),closeBtn=document.getElementById('closeBtn');
+  function open(){scrim.classList.add('open');closeBtn.focus();}
+  function close(){scrim.classList.remove('open');btn.focus();}
+  btn.addEventListener('click',open);
+  closeBtn.addEventListener('click',close);
+  scrim.addEventListener('click',function(e){if(e.target===scrim)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&scrim.classList.contains('open'))close();});
+
+  applyTheme(); stamp(); showQuote();
+  setInterval(function(){applyTheme();stamp();showQuote();},30000);
+})();
+</script>
+</body>
+</html>

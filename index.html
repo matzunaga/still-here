@@ -32,9 +32,14 @@ body{font-family:'DM Sans',system-ui,sans-serif;overflow:hidden;transition:backg
 .b2{width:100vmax;height:100vmax;right:-40vmax;top:20vh;background:radial-gradient(closest-side,var(--b2),transparent);animation:d2 95s ease-in-out infinite alternate}
 .b3{width:80vmax;height:80vmax;left:5vw;bottom:-45vmax;background:radial-gradient(closest-side,var(--b3),transparent);animation:d1 120s ease-in-out infinite alternate-reverse}
 .fog{position:absolute;left:-50%;top:-50%;width:200%;height:200%;background-size:cover;opacity:.32;will-change:transform;animation:d3 160s ease-in-out infinite alternate}
-@keyframes d1{from{transform:translate(-4vmax,-3vmax) scale(1)}to{transform:translate(8vmax,12vmax) scale(1.2)}}
-@keyframes d2{from{transform:translate(4vmax,5vmax) scale(1.1)}to{transform:translate(-9vmax,-8vmax) scale(.9)}}
+@keyframes d1{from{transform:translate(-8vmax,-6vmax) scale(1)}to{transform:translate(14vmax,18vmax) scale(1.25)}}
+@keyframes d2{from{transform:translate(8vmax,8vmax) scale(1.1)}to{transform:translate(-14vmax,-12vmax) scale(.85)}}
 @keyframes d3{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(-8%,6%) rotate(8deg)}}
+:root[data-theme="day"]{--b1:rgba(140,170,152,.7);--b2:rgba(150,180,198,.62);--b3:rgba(232,170,120,.42)}
+:root[data-theme="day"] .b1{animation-duration:28s}
+:root[data-theme="day"] .b2{animation-duration:36s}
+:root[data-theme="day"] .b3{animation-duration:44s}
+:root[data-theme="day"] .fog{animation-duration:60s;opacity:.45}
 @media (prefers-reduced-motion:reduce){.blob,.fog{animation:none}}
 
 .stamp{position:fixed;top:max(24px,env(safe-area-inset-top));right:clamp(20px,3vw,40px);margin:0;font-size:12px;font-weight:300;letter-spacing:.06em;opacity:var(--stamp);z-index:1}

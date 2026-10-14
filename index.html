@@ -39,7 +39,8 @@ body{font-family:'DM Sans',system-ui,sans-serif;overflow:hidden;transition:backg
 
 .stamp{position:fixed;top:max(24px,env(safe-area-inset-top));right:clamp(20px,3vw,40px);margin:0;font-size:12px;font-weight:300;letter-spacing:.06em;opacity:var(--stamp);z-index:1}
 .spine{position:fixed;left:clamp(22px,3.4vw,48px);bottom:max(30px,env(safe-area-inset-bottom));margin:0;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;align-items:center;gap:clamp(14px,1.4vw,20px);font-size:clamp(12px,1vw,14px);font-weight:500;letter-spacing:.5em;color:var(--support);white-space:nowrap;z-index:1;transition:color 2s ease}
-.spine-rule{display:block;width:2px;height:clamp(28px,3vw,44px);background:var(--accent);flex:none}
+.spine-text{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:10px;text-decoration-skip-ink:none}
+.spine-text .last{letter-spacing:0}
 
 main{position:relative;z-index:1;height:100%;display:flex;align-items:center;padding:0 clamp(40px,8vw,140px) 0 clamp(76px,12vw,220px)}
 .quote{max-width:100%;display:flex;flex-direction:column;gap:clamp(18px,2.4vw,30px);opacity:0;transform:translateY(8px);transition:opacity 2.4s ease,transform 2.4s ease}
@@ -74,7 +75,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 </div>
 
 <p class="stamp" id="stamp"></p>
-<p class="spine" aria-hidden="true"><span>STILL HERE</span><span class="spine-rule"></span></p>
+<p class="spine" aria-hidden="true"><span class="spine-text">STILL HER<span class="last">E</span></span></p>
 
 <main>
   <figure class="quote" id="quote" style="margin:0">
